@@ -19,7 +19,9 @@
         $stmt->bindParam(':password', $password);
         $stmt->execute();
 
-        echo "Registration successful!";
+        // Redirect to login page after successful registration 
+        header("Location: login.php"); 
+        exit();
     }
 ?>
 
@@ -32,7 +34,7 @@
 <body>
     <div class="container">
         <h2 class="mt-5">Register</h2>
-        <form action="register.php" method="post">
+        <form action="Register.php" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>
