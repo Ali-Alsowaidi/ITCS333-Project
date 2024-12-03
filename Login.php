@@ -39,6 +39,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
+        <p class="mt-3">Don't have an account? <a href="register.php" class="btn btn-secondary">Register</a></p>
     </div>
 </body>
 </html>

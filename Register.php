@@ -49,6 +49,7 @@
             </div> 
             <button type="submit" class="btn btn-primary">Register</button> 
         </form> 
+        <p class="mt-3">Already registered? <a href="login.php" class="btn btn-secondary">Login</a></p>
     </div> 
 </body> 
 </html>
