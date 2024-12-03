@@ -13,7 +13,7 @@
             exit();
         }
 
-        $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+        $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
@@ -23,3 +23,30 @@
     }
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Register</h2>
+        <form action="register.php" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label> 
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div> 
+            <div class="form-group"> 
+                <label for="password">Password</label> 
+                <input type="password" class="form-control" id="password" name="password" required> 
+            </div> 
+            <button type="submit" class="btn btn-primary">Register</button> 
+        </form> 
+    </div> 
+</body> 
+</html>
