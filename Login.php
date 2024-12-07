@@ -1,6 +1,8 @@
 <?php
     include 'DataBase.php';
 
+    $error_message = "";
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -14,7 +16,7 @@
         if ($result && password_verify($password, $result['password'])) {
             echo "Login successful!";
         } else {
-            echo "Invalid email or password.";
+            $error_message = "Invalid email or password.";
         }
     }
 ?>
@@ -45,6 +47,11 @@
     <div class="container d-flex justify-content-center align-items-center">
         <div class="login-box col-md-6">
             <h2 class="text-center">Login</h2>
+            <?php if ($error_message): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert"> 
+                    <?php echo $error_message; ?>
+                </div>
+                <?php endif; ?>
             <form action="Login.php" method="post">
                 <div class="form-group">
                     <label for="email">Email address</label>

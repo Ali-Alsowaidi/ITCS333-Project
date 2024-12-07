@@ -2,6 +2,8 @@
 
     include 'DataBase.php';
 
+    $error_message = "";
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -9,19 +11,19 @@
 
         // Advanced validation for UoB emails
         if (!preg_match("/^[a-zA-Z0-9._%+-]+@uob\.edu\.bh$/", $email)) {
-            echo "Invalid UoB email address.";
+            $error_message = "Invalid UoB email address.";
+        } else{
+
+            $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
+            $stmt->execute();
+
+            // Redirect to login page after successful registration 
+            header("Location: login.php"); 
             exit();
         }
-
-        $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
-        $stmt->execute();
-
-        // Redirect to login page after successful registration 
-        header("Location: login.php"); 
-        exit();
     }
 ?>
 
@@ -51,6 +53,11 @@
     <div class="container d-flex justify-content-center align-items-center">
         <div class="registration-box col-md-6">
             <h2 class="text-center">Register</h2>
+            <?php if ($error_message): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <?php echo $error_message; ?>
+                </div>
+                <?php endif; ?>
             <form action="Register.php" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
