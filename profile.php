@@ -106,6 +106,7 @@ try {
 
                 <label for="profile-pic">Profile Picture:</label>
                 <input type="file" name="profile-pic" id="profile-pic" accept="image/*">
+                <a href="logout.php" class="btn btn-danger">Logout</a>
 
                 <button type="submit">Update Profile</button>
             </form>
