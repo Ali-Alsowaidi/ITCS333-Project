@@ -1,4 +1,4 @@
-<?php include 'header.html'; ?>
+<?php include 'header.php'; ?>
 
 <?php
 
@@ -29,4 +29,4 @@ $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </main>
 
-<?php include 'footer.html';
+<?php include 'footer.php';
