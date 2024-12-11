@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     include 'DataBase.php';
 
     $error_message = "";
@@ -14,7 +16,8 @@
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result && password_verify($password, $result['password'])) {
-            echo "Login successful!";
+            $_SESSION['user_id'] = $result['id']; 
+            header("Location: homepage.php");
         } else {
             $error_message = "Invalid email or password.";
         }
